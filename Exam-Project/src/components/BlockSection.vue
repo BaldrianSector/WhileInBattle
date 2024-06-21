@@ -11,7 +11,7 @@ const count = ref(0)
 <template>
     <section class="w-100 h-screen">
         <!-- centered text in the middle of the section -->
-        <div class="flex items-center justify-center h-full text-center">
+        <div class="grid items-center justify-center h-full text-center">
             <h1 class="text-4xl text-white">{{ msg }}</h1>
             <slot></slot>
         </div>
