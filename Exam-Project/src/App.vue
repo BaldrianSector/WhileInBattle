@@ -45,9 +45,9 @@ onMounted(() => {
         start: 'top 60%',
         end: 'top top',
         scrub: true,
-        markers: true,
-        onEnter: () => gsap.to("#navbar", { opacity: 0 }),
-        onLeaveBack: () => gsap.to("#navbar", { opacity: 1 }),
+        markers: false,
+        onEnter: () => gsap.to("#navbar", { opacity: 0, pointerEvents: 'none' }),
+        onLeaveBack: () => gsap.to("#navbar", { opacity: 1, pointerEvents: 'auto' }),
     });
 });
 
@@ -58,7 +58,7 @@ function scrollToMap() {
     });
 
     // Scroll to the map section
-    gsap.to(window, { duration: 2, scrollTo: "#map", ease: "power3" });
+    gsap.to(window, { duration: 1.6, scrollTo: "#map", ease: "power3" });
 }
 </script>
 
