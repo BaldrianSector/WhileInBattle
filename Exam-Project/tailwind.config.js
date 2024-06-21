@@ -19,7 +19,18 @@ export default {
       'bubble-gum': '#ff77e9',
       'bermuda': '#78dcca',
     },
+    extend: {
+      // Other theme extensions
+    }
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.mix-blend-difference': {
+          'mix-blend-mode': 'difference',
+        },
+      }
+      addUtilities(newUtilities, ['responsive', 'hover'])
+    }
+  ],
 }
-

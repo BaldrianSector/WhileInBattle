@@ -68,8 +68,22 @@ function scrollToMap() {
   <BlockSection id="hero" class="bg-[#161718] hero-section" msg="Hero Section">
     <img src="./assets/images/Cover.png" alt="Cover" class="absolute inset-0 w-full h-screen object-cover">
   </BlockSection>
-  <BlockSection id="image-1" class="bg-[#807164]" msg="Image 1 Section" />
-  <BlockSection id="image-2" class="bg-[#57575F]" msg="Image 2 Section" />
+  <BlockSection id="image-1" class="bg-[#807164]" msg="Image 1 Section">
+    <ColGrid>
+
+        <p>A meeting between 10 of swedish dance company Cullberg’s own dancers and 10 external dancers from the street dance community.</p>
+        <img src="./assets/images/Image1.png" alt="Image 1">
+
+    </ColGrid>
+  </BlockSection>
+  <BlockSection id="image-2" class="bg-[#57575F]" msg="Image 2 Section">
+    <ColGrid>
+
+        <img src="./assets/images/Image2.png" alt="Image 2">
+        <p>Together they create a new dance performance that will be performed in the public space.</p>
+
+    </ColGrid>
+  </BlockSection>
   <BlockSection id="quote" class="bg-[#AA7246]" msg="Quote Section">
     <ColGrid>
       <Quote quote="“… a feeling of quiet euphoria arises. A small step for our audience affinity, a big one for Hoomanism.”"/>
