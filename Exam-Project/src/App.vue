@@ -30,8 +30,8 @@ onMounted(() => {
                 color: fg,
                 scrollTrigger: {
                     trigger: char,
-                    start: 'top 70%',
-                    end: 'top 30%',
+                    start: 'top 80%',
+                    end: 'top 45%',
                     scrub: true,
                     markers: false,
                 },

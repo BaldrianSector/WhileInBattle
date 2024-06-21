@@ -10,7 +10,7 @@ const count = ref(0)
 
 <template>
     <section class="w-100 h-100 relative grid-container">
-        <img src="../assets/images/Noise.png" alt="" class="absolute inset-0 w-full h-screen object-cover">
+        <img src="../assets/images/Noise.png" alt="noise" class="absolute inset-0 w-full h-screen object-cover mix-blend-color-burn z-50 pointer-events-none">
         <slot></slot>
     </section>
 </template>
