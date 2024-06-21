@@ -2,20 +2,18 @@
 import { ref } from 'vue'
 
 defineProps({
-    msg: String,
+    quote: String,
 })
 
 const count = ref(0)
 </script>
 
 <template>
-    <section class="w-100 h-screen">
+
         <!-- centered text in the middle of the section -->
-        <div class="flex items-center justify-center h-full text-center">
-            <h1 class="text-4xl text-white">{{ msg }}</h1>
-            <slot></slot>
-        </div>
-    </section>
+        <br>
+        <h1 class="text-4xl reveal-type">{{ quote }}</h1>
+
 </template>
 
 <style scoped>
