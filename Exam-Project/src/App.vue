@@ -1,22 +1,25 @@
 <script setup>
-import { onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import SplitType from 'split-type';
 import BlockSection from './components/BlockSection.vue';
+import NavBar from './components/NavBar.vue';
 import Quote from './components/Quote.vue';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+const splitTypes = ref([]);
 
 onMounted(() => {
-    const splitTypes = document.querySelectorAll('.reveal-type');
-
-    splitTypes.forEach((char, i) => {
+    const elements = document.querySelectorAll('.reveal-type');
+    elements.forEach((char, i) => {
         const bg = char.dataset.bgColor;
         const fg = char.dataset.fgColor;
 
         const text = new SplitType(char, { types: 'chars' });
+        splitTypes.value.push({ text, fg });
 
         gsap.fromTo(text.chars,
             {
@@ -35,31 +38,41 @@ onMounted(() => {
             }
         );
     });
+
+    // ScrollTrigger for fading out NavBar
+    ScrollTrigger.create({
+        trigger: "#map",
+        start: 'top 60%',
+        end: 'top top',
+        scrub: true,
+        markers: true,
+        onEnter: () => gsap.to("#navbar", { opacity: 0 }),
+        onLeaveBack: () => gsap.to("#navbar", { opacity: 1 }),
+    });
 });
+
+function scrollToMap() {
+    // Instantly set the color to fg
+    splitTypes.value.forEach(({ text, fg }) => {
+        gsap.set(text.chars, { color: fg });
+    });
+
+    // Scroll to the map section
+    gsap.to(window, { duration: 2, scrollTo: "#map", ease: "power3" });
+}
 </script>
 
 <template>
-  <BlockSection id="hero" class="bg-[#161718]" msg="Hero Section" />
-  <BlockSection id="s1" class="bg-[#807164]" msg="Image 1 Section" />
-  <BlockSection id="s1" class="bg-[#57575F]" msg="Image 2 Section" />
-  <BlockSection id="s1" class="bg-[#AA7246]" msg="Quote Section">
+  <NavBar id="navbar" @scroll-to-map="scrollToMap" />
+  <BlockSection id="hero" class="bg-[#161718]" msg="Hero Section"/>
+  <BlockSection id="image-1" class="bg-[#807164]" msg="Image 1 Section" />
+  <BlockSection id="image-2" class="bg-[#57575F]" msg="Image 2 Section" />
+  <BlockSection id="quote" class="bg-[#AA7246]" msg="Quote Section">
     <br>
     <Quote quote="“… a feeling of quiet euphoria arises. A small step for our audience affinity, a big one for Hoomanism.”"/>
   </BlockSection>
-  <BlockSection id="s1" class="bg-[#4D5C93]" msg="Map Section" />
+  <BlockSection id="map" class="bg-[#4D5C93]" msg="Map Section" />
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
 </style>
