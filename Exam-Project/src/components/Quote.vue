@@ -9,11 +9,8 @@ const count = ref(0)
 </script>
 
 <template>
-
-        <!-- centered text in the middle of the section -->
         <br>
         <h1 class="text-4xl reveal-type" data-bg-color="#BCACAC" data-fg-color="#F9E7E7">{{ quote }}</h1>
-
 </template>
 
 <style scoped>
