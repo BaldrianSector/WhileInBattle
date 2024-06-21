@@ -32,7 +32,7 @@ onMounted(() => {
                     trigger: char,
                     start: 'top 80%',
                     end: 'top 45%',
-                    scrub: true,
+                    scrub: 0.5,
                     markers: false,
                 },
                 stagger: 0.3
@@ -87,9 +87,25 @@ function scrollToMap() {
   <BlockSection id="quote" class="bg-[#AA7246]" msg="Quote Section">
     <ColGrid>
       <Quote quote="“… a feeling of quiet euphoria arises. A small step for our audience affinity, a big one for Hoomanism.”"/>
+      <p class="italic">-&nbsp<a href="https://www.aftonbladet.se/kultur/teater/a/Q7vR48/recension-hooman-sharifi-cullberg-while-in-battle-im-free-never-free-to-rest" target="_blank">Aftonbladet</a></p>
     </ColGrid>
   </BlockSection>
-  <BlockSection id="map" class="bg-[#4D5C93]" msg="Map Section" />
+  <BlockSection id="map" class="bg-[#4D5C93]" msg="Map Section">
+    <ColGrid>
+      <div class="flex flex-center">
+        <a href="https://www.metropolis.dk/">
+          <img src="./assets/images/Metropolis.png" alt="Metropolis Logo" class="w-full h-full object-contain">
+        </a>
+        <p class="italic px-1">&nbspX&nbsp</p>
+        <a href="https://cullberg.com/">
+          <img src="./assets/images/Cullberg.png" alt="Cullberg Logo" class="w-full h-full object-contain">
+        </a>
+      </div>
+      <p>Tickets are free and gives you access to a seat on a bench or seat cushion on the ground. Please take your place 15 min. before the start of the performance.</p>
+      <button class="transition w-full border font-semibold py-3 bg-transparent hover:bg-cream text-cream hover:text-[#161718] border-cream hover:border-transparent duration-300">GET YOUR TICKET</button>
+      <img src="./assets/images/Map.png" alt="Map">
+    </ColGrid>
+  </BlockSection>
 </template>
 
 
