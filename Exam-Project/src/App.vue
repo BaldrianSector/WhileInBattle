@@ -96,7 +96,7 @@ function scrollToMap() {
     <ColGrid>
       <div class="col-span-12">
         <Quote quote="“… a feeling of quiet euphoria arises. A small step for our audience affinity, a big one for Hoomanism.”"/>
-        <p class="italic absolute bottom-24 right-24">-&nbsp<a href="https://www.aftonbladet.se/kultur/teater/a/Q7vR48/recension-hooman-sharifi-cullberg-while-in-battle-im-free-never-free-to-rest" target="_blank">Aftonbladet</a></p>
+        <p class="italic absolute bottom-24 right-24 text-[#BCACAC]">-&nbsp<a href="https://www.aftonbladet.se/kultur/teater/a/Q7vR48/recension-hooman-sharifi-cullberg-while-in-battle-im-free-never-free-to-rest" target="_blank">Aftonbladet</a></p>
       </div>
     </ColGrid>
   </BlockSection>
