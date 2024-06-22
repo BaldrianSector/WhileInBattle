@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --primary-font: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --secondary-font: 'Abril Fatface', cursive, serif, sans-serif;
+  
+  font-family: var(--primary-font);
+
   line-height: 1.5;
   font-weight: 400;
 
@@ -16,6 +20,14 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  font-family: var(--secondary-font);
+  font-size: 6rem;
+  font-weight: 400;
+  mix-blend-mode: hard-light;
+  color: #FFC700;
 }
 
 body {

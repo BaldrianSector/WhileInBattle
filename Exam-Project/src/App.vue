@@ -66,7 +66,15 @@ function scrollToMap() {
 <template>
   <NavBar id="navbar" @scroll-to-map="scrollToMap" />
   <BlockSection id="hero" class="bg-[#161718] hero-section" msg="Hero Section">
-    <img src="./assets/images/Cover.png" alt="Cover" class="absolute inset-0 w-full h-screen object-cover">
+    <img src="./assets/images/Cover.png" alt="Cover" class="absolute inset-0 w-full h-screen object-cover pointer-events-none select-none">
+    <ColGrid>
+      <div class="filler col-span-6"></div>
+      <div class="col-span-6 px-28 leading-[4.5rem] pt-24">
+        <h1>WHILE IN BATTLE I’M FREE<br>
+          NEVER FREE TO REST</h1>
+        <p class="text-2xl pt-32 px-24 text-left leading-10">Exploring the movement of bodies in the city space of Copenhagen during the Metropolis Festival June 2024.</p>
+      </div>
+    </ColGrid>
   </BlockSection>
   <BlockSection id="image-1" class="bg-[#807164]" msg="Image 1 Section">
     <ColGrid>

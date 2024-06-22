@@ -10,7 +10,7 @@ const count = ref(0)
 
 <template>
         <br>
-        <h1 class="text-4xl reveal-type" data-bg-color="#BCACAC" data-fg-color="#F9E7E7">{{ quote }}</h1>
+        <h2 class="text-4xl reveal-type" data-bg-color="#BCACAC" data-fg-color="#F9E7E7">{{ quote }}</h2>
 </template>
 
 <style scoped>
