@@ -79,7 +79,7 @@ function scrollToMap() {
   <BlockSection id="image-1" class="bg-[#807164]" msg="Image 1 Section">
     <ColGrid>
 
-        <p class="col-span-6">A meeting between 10 of swedish dance company Cullberg’s own dancers and 10 external dancers from the street dance community.</p>
+        <p class="col-span-6 text-3xl leading-10 px-40 text-left">A meeting between 10 of swedish dance company Cullberg’s own dancers and 10 external dancers from the street dance community.</p>
         <img class="col-span-6" src="./assets/images/Image1.png" alt="Image 1">
 
     </ColGrid>
@@ -88,7 +88,7 @@ function scrollToMap() {
     <ColGrid>
 
         <img class="col-span-6" src="./assets/images/Image2.png" alt="Image 2">
-        <p class="col-span-6">Together they create a new dance performance that will be performed in the public space.</p>
+        <p class="col-span-6 text-3xl leading-10 px-36 text-left">From the battle the Dancers rise, as individuals and together. They spring from the fight, the resistance, the coexistence. From the will and necessity to make a stand for something that might be taken away.</p>
 
     </ColGrid>
   </BlockSection>
@@ -102,7 +102,7 @@ function scrollToMap() {
   </BlockSection>
   <BlockSection id="map" class="bg-[#4D5C93]" msg="Map Section">
     <ColGrid>
-      <div class="col-span-6 flex flex-col items-center px-20 gap-4">
+      <div class="col-span-6 flex flex-col items-center px-40 gap-4">
         <div class="flex flex-center">
           <a href="https://www.metropolis.dk/">
             <img src="./assets/images/Metropolis.png" alt="Metropolis Logo" class="w-full h-full object-contain">
@@ -112,7 +112,7 @@ function scrollToMap() {
             <img src="./assets/images/Cullberg.png" alt="Cullberg Logo" class="w-full h-full object-contain">
           </a>
         </div>
-        <p>Tickets are free and gives you access to a seat on a bench or seat cushion on the ground. Please take your place 15 min. before the start of the performance.</p>
+        <p class="text-2xl leading-10 text-left">Tickets are free and gives you access to a seat on a bench or seat cushion on the ground. Please do take your place at least 15 min. before the begining of the performance.</p>
         <button class="transition w-full border font-semibold py-3 bg-transparent hover:bg-cream text-cream hover:text-[#161718] border-cream hover:border-transparent duration-300">GET YOUR TICKET</button>
       </div>
       <img class="col-span-6" src="./assets/images/Map.png" alt="Map">
