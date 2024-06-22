@@ -57,8 +57,8 @@ function scrollToMap() {
         gsap.set(text.chars, { color: fg });
     });
 
-    // Scroll to the map section
-    gsap.to(window, { duration: 1.6, scrollTo: "#map", ease: "power3" });
+    // Scroll to the map section using Lenis
+    lenis.scrollTo('#map');
 }
 </script>
 
