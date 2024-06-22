@@ -5,7 +5,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import SplitType from 'split-type';
 import BlockSection from './components/BlockSection.vue';
-import ColGrid from './components/ColGrid.vue';
 import NavBar from './components/NavBar.vue';
 import Quote from './components/Quote.vue';
 
