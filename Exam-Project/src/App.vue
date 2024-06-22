@@ -79,39 +79,43 @@ function scrollToMap() {
   <BlockSection id="image-1" class="bg-[#807164]" msg="Image 1 Section">
     <ColGrid>
 
-        <p>A meeting between 10 of swedish dance company Cullberg’s own dancers and 10 external dancers from the street dance community.</p>
-        <img src="./assets/images/Image1.png" alt="Image 1">
+        <p class="col-span-6">A meeting between 10 of swedish dance company Cullberg’s own dancers and 10 external dancers from the street dance community.</p>
+        <img class="col-span-6" src="./assets/images/Image1.png" alt="Image 1">
 
     </ColGrid>
   </BlockSection>
   <BlockSection id="image-2" class="bg-[#57575F]" msg="Image 2 Section">
     <ColGrid>
 
-        <img src="./assets/images/Image2.png" alt="Image 2">
-        <p>Together they create a new dance performance that will be performed in the public space.</p>
+        <img class="col-span-6" src="./assets/images/Image2.png" alt="Image 2">
+        <p class="col-span-6">Together they create a new dance performance that will be performed in the public space.</p>
 
     </ColGrid>
   </BlockSection>
   <BlockSection id="quote" class="bg-[#AA7246]" msg="Quote Section">
     <ColGrid>
-      <Quote quote="“… a feeling of quiet euphoria arises. A small step for our audience affinity, a big one for Hoomanism.”"/>
-      <p class="italic">-&nbsp<a href="https://www.aftonbladet.se/kultur/teater/a/Q7vR48/recension-hooman-sharifi-cullberg-while-in-battle-im-free-never-free-to-rest" target="_blank">Aftonbladet</a></p>
+      <div class="col-span-12">
+        <Quote quote="“… a feeling of quiet euphoria arises. A small step for our audience affinity, a big one for Hoomanism.”"/>
+        <p class="italic absolute bottom-24 right-24">-&nbsp<a href="https://www.aftonbladet.se/kultur/teater/a/Q7vR48/recension-hooman-sharifi-cullberg-while-in-battle-im-free-never-free-to-rest" target="_blank">Aftonbladet</a></p>
+      </div>
     </ColGrid>
   </BlockSection>
   <BlockSection id="map" class="bg-[#4D5C93]" msg="Map Section">
     <ColGrid>
-      <div class="flex flex-center">
-        <a href="https://www.metropolis.dk/">
-          <img src="./assets/images/Metropolis.png" alt="Metropolis Logo" class="w-full h-full object-contain">
-        </a>
-        <p class="italic px-1">&nbspX&nbsp</p>
-        <a href="https://cullberg.com/">
-          <img src="./assets/images/Cullberg.png" alt="Cullberg Logo" class="w-full h-full object-contain">
-        </a>
+      <div class="col-span-6 flex flex-col items-center px-20 gap-4">
+        <div class="flex flex-center">
+          <a href="https://www.metropolis.dk/">
+            <img src="./assets/images/Metropolis.png" alt="Metropolis Logo" class="w-full h-full object-contain">
+          </a>
+          <p class="italic px-1">&nbspX&nbsp</p>
+          <a href="https://cullberg.com/">
+            <img src="./assets/images/Cullberg.png" alt="Cullberg Logo" class="w-full h-full object-contain">
+          </a>
+        </div>
+        <p>Tickets are free and gives you access to a seat on a bench or seat cushion on the ground. Please take your place 15 min. before the start of the performance.</p>
+        <button class="transition w-full border font-semibold py-3 bg-transparent hover:bg-cream text-cream hover:text-[#161718] border-cream hover:border-transparent duration-300">GET YOUR TICKET</button>
       </div>
-      <p>Tickets are free and gives you access to a seat on a bench or seat cushion on the ground. Please take your place 15 min. before the start of the performance.</p>
-      <button class="transition w-full border font-semibold py-3 bg-transparent hover:bg-cream text-cream hover:text-[#161718] border-cream hover:border-transparent duration-300">GET YOUR TICKET</button>
-      <img src="./assets/images/Map.png" alt="Map">
+      <img class="col-span-6" src="./assets/images/Map.png" alt="Map">
     </ColGrid>
   </BlockSection>
 </template>
