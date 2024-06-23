@@ -145,7 +145,9 @@ function closeLightBox() {
         <p class="text-2xl leading-10 text-left">Tickets are free and gives you access to a seat on a bench or seat cushion on the ground. Please do take your place at least 15 min. before the begining of the performance.</p>
         <button class="transition w-full border font-semibold py-3 bg-transparent hover:bg-cream text-cream hover:text-[#161718] border-cream hover:border-transparent duration-300" @click="openLightBox">GET YOUR TICKET</button>
       </div>
-      <img class="col-span-6" src="./assets/images/Map.png" alt="Map">
+      <a class="col-span-6" href="https://maps.app.goo.gl/fnmqkKxRPv2Bevxj8" target="_blank">
+        <img src="./assets/images/Map.png" alt="Map">
+      </a>
 
   </BlockSection>
 
