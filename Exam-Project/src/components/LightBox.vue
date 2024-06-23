@@ -68,7 +68,9 @@ export default {
                 <button class="transition w-[355px] border font-semibold py-3 bg-transparent text-dark-gray border-dark-gray duration-300 mt-5 uppercase pointer-events-none select-none">{{ BookingText }}</button>
             </div>
             <div v-else>
-                <button class="transition w-[355px] border font-semibold py-3 bg-transparent hover:bg-cream text-cream hover:text-brown border-cream hover:border-transparent duration-300 mt-5 uppercase">{{ BookingText }}</button>
+                <a href="https://www.eventim-light.com/dk/a/6268ebc70e2f6b59c13b0fac/s/6655dc75e820523242408abe?lang=en" target="_blank">
+                    <button class="transition w-[355px] border font-semibold py-3 bg-transparent hover:bg-cream text-cream hover:text-brown border-cream hover:border-transparent duration-300 mt-5 uppercase">{{ BookingText }}</button>
+                </a>
             </div>
         </div>
         <div class="col-span-6 text-left text-xl px-12">
