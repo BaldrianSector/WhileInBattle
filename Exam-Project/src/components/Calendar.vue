@@ -100,23 +100,23 @@ export default {
 }
 
 #circle-25:hover ~ #text-25 {
-    fill: #5A3131;
+    fill: var(--color-lightbox);
 }
 
 #circle-26:hover ~ #text-26 {
-    fill: #5A3131;
+    fill: var(--color-lightbox);
 }
 
 #circle-27:hover ~ #text-27 {
-    fill: #5A3131;
+    fill: var(--color-lightbox);
 }
 
 #circle-28:hover ~ #text-28 {
-    fill: #5A3131;
+    fill: var(--color-lightbox);
 }
 
 #circle-29:hover ~ #text-29 {
-    fill: #5A3131;
+    fill: var(--color-lightbox);
 }
 
 svg path {
