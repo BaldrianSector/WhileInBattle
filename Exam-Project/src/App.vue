@@ -49,6 +49,17 @@ onMounted(() => {
         onEnter: () => gsap.to("#navbar", { opacity: 0, pointerEvents: 'none' }),
         onLeaveBack: () => gsap.to("#navbar", { opacity: 1, pointerEvents: 'auto' }),
     });
+
+    gsap.utils.toArray('section').forEach(section => {
+        ScrollTrigger.create({
+            trigger: section,
+            start: 'top top',
+            pin: true,
+            pinSpacing: false,
+            scrub: 0.5,
+            markers: false
+        });
+    });
 });
 
 function scrollToMap() {
@@ -60,10 +71,26 @@ function scrollToMap() {
     // Scroll to the map section using Lenis
     lenis.scrollTo('#map');
 }
+
+function openLightBox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.classList.remove('hidden');
+    gsap.fromTo(lightbox,
+        { x: '100%' },
+        { x: '0%', duration: 0.5, ease: 'power2.inOut' }
+    );
+}
+
+function closeLightBox() {
+    const lightbox = document.getElementById('lightbox');
+    gsap.to(lightbox,
+        { x: '100%', duration: 0.5, ease: 'power2.inOut', onComplete: () => lightbox.classList.add('hidden') }
+    );
+}
 </script>
 
 <template>
-  <NavBar id="navbar" @scroll-to-map="scrollToMap" />
+  <NavBar id="navbar" @scroll-to-map="scrollToMap" @open-light-box="openLightBox"/>
   <BlockSection id="hero" class="bg-[#161718] hero-section" msg="Hero Section">
     <template v-slot:hero >
       <img src="./assets/images/Cover.png" alt="Cover" class="absolute inset-0 w-full h-screen object-cover pointer-events-none select-none">
@@ -114,11 +141,22 @@ function scrollToMap() {
           </a>
         </div>
         <p class="text-2xl leading-10 text-left">Tickets are free and gives you access to a seat on a bench or seat cushion on the ground. Please do take your place at least 15 min. before the begining of the performance.</p>
-        <button class="transition w-full border font-semibold py-3 bg-transparent hover:bg-cream text-cream hover:text-[#161718] border-cream hover:border-transparent duration-300">GET YOUR TICKET</button>
+        <button class="transition w-full border font-semibold py-3 bg-transparent hover:bg-cream text-cream hover:text-[#161718] border-cream hover:border-transparent duration-300" @click="openLightBox">GET YOUR TICKET</button>
       </div>
       <img class="col-span-6" src="./assets/images/Map.png" alt="Map">
 
   </BlockSection>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="fixed inset-0 bg-[#5A3131] z-50 hidden flex justify-center items-center">
+    <div class="relative w-full h-full p-8 overflow-auto">
+      <img src="./assets/images/Noise.png" alt="noise" class="absolute inset-0 w-full h-screen object-cover mix-blend-color-burn z-50 pointer-events-none select-none">
+      <button class="absolute top-4 right-4 text-black" @click="closeLightBox">Close</button>
+      <p>Lightbox content goes here</p>
+      <!-- Add your lightbox content here -->
+    </div>
+  </div>
+
 </template>
 
 

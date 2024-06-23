@@ -1,10 +1,14 @@
 <script setup>
 import { defineEmits } from 'vue';
 
-const emit = defineEmits(['scroll-to-map']);
+const emit = defineEmits(['scroll-to-map', 'open-light-box']);
 
-function handleScrollToMap() {
+function scrollToMap() {
     emit('scroll-to-map');
+}
+
+function openLightBox() {
+    emit('open-light-box');
 }
 </script>
 
@@ -21,13 +25,13 @@ function handleScrollToMap() {
         </a>
       </div>
       <div class="col-span-7-8 flex-center">
-        <div class="flex cursor-pointer" @click="handleScrollToMap">
+        <div class="flex cursor-pointer" @click="scrollToMap">
             <img src="../assets/images/Pin.png" class="pr-2" alt="Pin">
             <p>Blågårds Plads</p>
         </div>
       </div>
       <div class="col-span-9-10 flex-center">
-        <button class="transition w-full border font-semibold py-3 bg-transparent hover:bg-cream text-cream hover:text-[#161718] border-cream hover:border-transparent duration-300 hover:mix-blend-difference">GET YOUR TICKET</button>
+        <button class="transition w-full border font-semibold py-3 bg-transparent hover:bg-cream text-cream hover:text-[#161718] border-cream hover:border-transparent duration-300 hover:mix-blend-difference" @click="openLightBox">GET YOUR TICKET</button>
       </div>
       <div class="col-span-11-12 flex-center">
         <span class="cursor-pointer font-semibold">ENGLISH</span>&nbsp/&nbsp<span class="cursor-pointer">DANISH</span>
