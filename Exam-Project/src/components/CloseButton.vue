@@ -1,0 +1,20 @@
+<script setup>
+</script>
+
+<template>
+    <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M37 5L5 37" stroke="#887979" stroke-width="6" stroke-linecap="square"/>
+        <path d="M5 5L37 37" stroke="#887979" stroke-width="6" stroke-linecap="square"/>
+    </svg>
+</template>
+
+<style scoped>
+svg:hover path {
+    stroke: var(--color-primary);
+    transition: stroke 0.2s;
+}
+
+svg path {
+    transition: stroke 0.3s;
+}
+</style>

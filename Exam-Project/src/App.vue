@@ -5,8 +5,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import SplitType from 'split-type';
 import BlockSection from './components/BlockSection.vue';
+import LightBox from './components/LightBox.vue';
 import NavBar from './components/NavBar.vue';
 import Quote from './components/Quote.vue';
+import CloseButton from './components/CloseButton.vue';
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -50,7 +52,7 @@ onMounted(() => {
         onLeaveBack: () => gsap.to("#navbar", { opacity: 1, pointerEvents: 'auto' }),
     });
 
-    gsap.utils.toArray('section').forEach(section => {
+/*     gsap.utils.toArray('section').forEach(section => {
         ScrollTrigger.create({
             trigger: section,
             start: 'top top',
@@ -59,7 +61,7 @@ onMounted(() => {
             scrub: 0.5,
             markers: false
         });
-    });
+    }); */
 });
 
 function scrollToMap() {
@@ -124,7 +126,7 @@ function closeLightBox() {
 
       <div class="col-span-12">
         <Quote quote="“… a feeling of quiet euphoria arises. A small step for our audience affinity, a big one for Hoomanism.”"/>
-        <p class="italic absolute bottom-24 right-24 text-[#BCACAC]">-&nbsp<a href="https://www.aftonbladet.se/kultur/teater/a/Q7vR48/recension-hooman-sharifi-cullberg-while-in-battle-im-free-never-free-to-rest" target="_blank">Aftonbladet</a></p>
+        <p class="italic absolute bottom-24 right-24 text-[#BCACAC] text-lg">-&nbsp<a href="https://www.aftonbladet.se/kultur/teater/a/Q7vR48/recension-hooman-sharifi-cullberg-while-in-battle-im-free-never-free-to-rest" target="_blank">Aftonbladet</a></p>
       </div>
 
   </BlockSection>
@@ -149,11 +151,12 @@ function closeLightBox() {
 
   <!-- Lightbox -->
   <div id="lightbox" class="fixed inset-0 bg-[#5A3131] z-50 hidden flex justify-center items-center">
-    <div class="relative w-full h-full p-8 overflow-auto">
+    <div class="relative w-full h-full p-8 overflow-hidden">
       <img src="./assets/images/Noise.png" alt="noise" class="absolute inset-0 w-full h-screen object-cover mix-blend-color-burn z-50 pointer-events-none select-none">
-      <button class="absolute top-4 right-4 text-black" @click="closeLightBox">Close</button>
-      <p>Lightbox content goes here</p>
-      <!-- Add your lightbox content here -->
+      <button class="absolute top-20 right-32 text-black" @click="closeLightBox">
+        <CloseButton/>
+      </button>
+      <LightBox/>
     </div>
   </div>
 
@@ -175,5 +178,9 @@ function closeLightBox() {
   width: 100%;
   height: 100%;
   object-fit: cover; /* Ensures the image covers the entire container */
+}
+
+CloseButton:hover {
+  fill: red;
 }
 </style>
