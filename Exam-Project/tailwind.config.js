@@ -11,6 +11,7 @@ export default {
       'black': '#000000',
       'cream': '#F9E7E7',
       'white': '#ffffff',
+      'brown': '#5A3131',
       'purple': '#3f3cbb',
       'midnight': '#121063',
       'metal': '#565584',

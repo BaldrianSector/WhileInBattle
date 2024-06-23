@@ -1,11 +1,23 @@
 <script setup>
+import { ref } from 'vue';
 import ColGrid from './ColGrid.vue';
+import Calendar from './Calendar.vue';
+
+// Define the reactive variable for BookingText
+const BookingText = ref('Choose a date');
+const Date = ref(0);
+
+// Function to handle button click (optional)
+const openLightBox = () => {
+    console.log('Button clicked!');
+};
 </script>
 
 <template>
     <ColGrid>
-        <div class="col-span-6">
-
+        <div class="col-span-6 flex flex-col items-center">
+            <Calendar/>
+            <button class="transition w-[355px] border font-semibold py-3 bg-transparent hover:bg-cream text-cream hover:text-brown border-cream hover:border-transparent duration-300 mt-5 uppercase">{{ BookingText }}</button>
         </div>
         <div class="col-span-6 text-left text-xl px-12">
             <p class="text-2xl">Performance lasts: 1h 30min</p>
@@ -19,5 +31,4 @@ import ColGrid from './ColGrid.vue';
 </template>
 
 <style scoped>
-
 </style>
