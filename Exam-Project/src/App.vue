@@ -12,7 +12,8 @@ import CloseButton from "./components/CloseButton.vue";
 import { useI18n } from 'vue-i18n';
 import Lenis from 'lenis';
 import Snap from 'lenis/snap';
-import P5Sketch from './components/P5Sketch.vue';
+import P5Sketch1 from './components/P5Sketch1.vue';
+import P5Sketch2 from './components/P5Sketch2.vue';
 
 const lenis = new Lenis({
     wheelMultiplier: 1.5,
@@ -95,6 +96,27 @@ onMounted(() => {
 
     // Event listener for window resize to update snapping points
     window.addEventListener('resize', updateSnappingPoints);
+
+    document.addEventListener('DOMContentLoaded', () => {
+    const mapContainer = document.querySelector('.map-container');
+    const map = document.getElementById('map');
+
+    mapContainer.addEventListener('mousemove', (e) => {
+        const rect = mapContainer.getBoundingClientRect();
+        const x = e.clientX - rect.left; // Get the horizontal coordinate
+        const y = e.clientY - rect.top;  // Get the vertical coordinate
+
+        // Calculate offset based on the container dimensions and mouse position
+        const moveX = (x / rect.width - 0.5) * 10; // Adjust 10 to control the movement range
+        const moveY = (y / rect.height - 0.5) * 10; // Adjust 10 to control the movement range
+
+        map.style.transform = `scale(1.2) translate(${moveX}px, ${moveY}px)`;
+    });
+
+    mapContainer.addEventListener('mouseleave', () => {
+        map.style.transform = 'scale(1)';
+    });
+});
 });
 
 onBeforeUnmount(() => {
@@ -183,7 +205,9 @@ function handleKeydown(event) {
     <p class="col-span-6 text-3xl leading-10 px-40 text-left">
       {{ t('collab') }}
     </p>
-    <img class="col-span-6" src="./assets/images/Image1.png" alt="Image 1" />
+    <div class="col-span-6">
+      <P5Sketch1 class="p5-sketch"/>
+    </div>
   </BlockSection>
   <BlockSection id="quote" class="bg-[#AA7246] block-section" msg="Quote Section">
     <div class="col-span-12">
@@ -202,7 +226,7 @@ function handleKeydown(event) {
   <BlockSection id="image-2" class="bg-[#57575F] block-section" msg="Image 2 Section">
     <div class="col-span-6 flex justify-center">
       <!-- <img src="./assets/images/Image2.png" alt="Image 2" /> -->
-      <P5Sketch class="p5-sketch"/>
+      <P5Sketch2 class="p5-sketch"/>
     </div>
     <p class="col-span-6 text-3xl leading-10 px-36 text-left">
       {{ t('about') }}
@@ -237,13 +261,15 @@ function handleKeydown(event) {
       {{ t('buy-button') }}
       </button>
     </div>
+    <div class="map-container ">
     <a
-      class="col-span-6 flex justify-center items-center"
-      href="https://maps.app.goo.gl/fnmqkKxRPv2Bevxj8"
-      target="_blank"
+        class="col-span-6 flex justify-center items-center"
+        href="https://maps.app.goo.gl/fnmqkKxRPv2Bevxj8"
+        target="_blank"
     >
-      <img src="./assets/images/Map.png" alt="Map" />
+        <img id="map" src="./assets/images/Map.png" alt="Map" />
     </a>
+    </div>
   </BlockSection>
 
   <!-- Lightbox -->
@@ -283,5 +309,22 @@ function handleKeydown(event) {
     width: 100%;
     height: 100%;
     object-fit: cover; /* Ensures the image covers the entire container */
+}
+
+.map-container {
+    width: 500px;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease;
+}
+
+.map-container:hover #map {
+    transform: scale(1.1);
 }
 </style>
