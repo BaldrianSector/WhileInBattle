@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
@@ -97,6 +97,22 @@ function closeLightBox() {
     ease: "power2.inOut",
     onComplete: () => lightbox.classList.add("hidden"),
   });
+}
+
+// Add event listener for escape key
+onMounted(() => {
+  window.addEventListener("keydown", handleKeydown);
+});
+
+// Remove event listener when component is unmounted
+onBeforeUnmount(() => {
+  window.removeEventListener("keydown", handleKeydown);
+});
+
+function handleKeydown(event) {
+  if (event.key === "Escape") {
+    closeLightBox();
+  }
 }
 </script>
 
