@@ -10,7 +10,7 @@
 <style scoped>
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(12, 120px);
+    grid-template-columns: repeat(12, max(120px));
     grid-gap: 20px;
     justify-content: center;
 }
