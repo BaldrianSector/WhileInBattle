@@ -10,137 +10,141 @@ import NavBar from "./components/NavBar.vue";
 import Quote from "./components/Quote.vue";
 import CloseButton from "./components/CloseButton.vue";
 import { useI18n } from 'vue-i18n';
-import Lenis from 'lenis'
-import Snap from 'lenis/snap'
+import Lenis from 'lenis';
+import Snap from 'lenis/snap';
+import P5Sketch from './components/P5Sketch.vue';
 
 const lenis = new Lenis({
     wheelMultiplier: 1.5,
-})
+});
 
 lenis.on('scroll', (e) => {
     // console.log(e)
-})
+});
 
 function raf(time) {
-    lenis.raf(time)
-    requestAnimationFrame(raf)
+    lenis.raf(time);
+    requestAnimationFrame(raf);
 }
 
-requestAnimationFrame(raf)
+requestAnimationFrame(raf);
 
 const snap = new Snap(lenis, {
     type: 'proximity',
     velocityThreshold: '0.5', // Velocity threshold for snapping
-    lerp: 0.05,
-})
+    lerp: 0.035,
+});
 const { t } = useI18n();
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const splitTypes = ref([]);
 
+function updateSnappingPoints() {
+    // Clear existing snapping points
+    snap.remove();
+    
+    // Recalculate and add new snapping points
+    document.querySelectorAll('.block-section').forEach((section) => {
+        snap.add(section.offsetTop);
+    });
+}
+
 onMounted(() => {
-  const elements = document.querySelectorAll(".reveal-type");
-  elements.forEach((char, i) => {
-    const bg = char.dataset.bgColor;
-    const fg = char.dataset.fgColor;
+    const elements = document.querySelectorAll(".reveal-type");
+    elements.forEach((char, i) => {
+        const bg = char.dataset.bgColor;
+        const fg = char.dataset.fgColor;
 
-    const text = new SplitType(char, { types: "chars" });
-    splitTypes.value.push({ text, fg });
+        const text = new SplitType(char, { types: "chars" });
+        splitTypes.value.push({ text, fg });
 
-    gsap.fromTo(
-      text.chars,
-      {
-        color: bg,
-      },
-      {
-        color: fg,
-        scrollTrigger: {
-          trigger: char,
-          start: "top 80%",
-          end: "top 48%",
-          scrub: 0.5,
-          markers: false,
-        },
-        stagger: 0.3,
-      }
-    );
-  });
+        gsap.fromTo(
+            text.chars,
+            {
+                color: bg,
+            },
+            {
+                color: fg,
+                scrollTrigger: {
+                    trigger: char,
+                    start: "top 80%",
+                    end: "top 48%",
+                    scrub: 0.5,
+                    markers: false,
+                },
+                stagger: 0.3,
+            }
+        );
+    });
 
-  // ScrollTrigger for fading out NavBar
-  ScrollTrigger.create({
-    trigger: "#map",
-    start: "top 60%",
-    end: "top top",
-    scrub: true,
-    markers: false,
-    onEnter: () => gsap.to("#navbar", { opacity: 0, pointerEvents: "none" }),
-    onLeaveBack: () =>
-      gsap.to("#navbar", { opacity: 1, pointerEvents: "auto" }),
-  });
+    // ScrollTrigger for fading out NavBar
+    ScrollTrigger.create({
+        trigger: "#map",
+        start: "top 60%",
+        end: "top top",
+        scrub: true,
+        markers: false,
+        onEnter: () => gsap.to("#navbar", { opacity: 0, pointerEvents: "none" }),
+        onLeaveBack: () =>
+            gsap.to("#navbar", { opacity: 1, pointerEvents: "auto" }),
+    });
 
-  /*     gsap.utils.toArray('section').forEach(section => {
-        ScrollTrigger.create({
-            trigger: section,
-            start: 'top top',
-            pin: true,
-            pinSpacing: false,
-            scrub: 0.5,
-            markers: false
-        });
-    }); */
+    // Add snapping points for each block section
+    updateSnappingPoints();
 
-  // Debugging: log each section to ensure all are detected
-  document.querySelectorAll('.block-section').forEach((section) => {
-    console.log('Detected section:', section);
-    snap.add(section.offsetTop);
-  });
+    // Event listener for window resize to update snapping points
+    window.addEventListener('resize', updateSnappingPoints);
+});
+
+onBeforeUnmount(() => {
+    window.removeEventListener('resize', updateSnappingPoints);
 });
 
 function scrollToMap() {
-  // Instantly set the color to fg
-  splitTypes.value.forEach(({ text, fg }) => {
-    gsap.set(text.chars, { color: fg });
-  });
+    // Instantly set the color to fg
+    splitTypes.value.forEach(({ text, fg }) => {
+        gsap.set(text.chars, { color: fg });
+    });
 
-  // Scroll to the map section using Lenis
-  lenis.scrollTo("#map");
+    // Scroll to the map section using Lenis
+    lenis.scrollTo("#map");
 }
 
 function openLightBox() {
-  const lightbox = document.getElementById("lightbox");
-  lightbox.classList.remove("hidden");
-  gsap.fromTo(
-    lightbox,
-    { x: "100%" },
-    { x: "0%", duration: 0.5, ease: "power2.inOut" }
-  );
+    const lightbox = document.getElementById("lightbox");
+    lightbox.classList.remove("hidden");
+    gsap.fromTo(
+        lightbox,
+        { x: "100%" },
+        { x: "0%", duration: 0.5, ease: "power2.inOut" }
+    );
 }
 
 function closeLightBox() {
-  const lightbox = document.getElementById("lightbox");
-  gsap.to(lightbox, {
-    x: "100%",
-    duration: 0.5,
-    ease: "power2.inOut",
-    onComplete: () => lightbox.classList.add("hidden"),
-  });
+    const lightbox = document.getElementById("lightbox");
+    gsap.to(lightbox, {
+        x: "100%",
+        duration: 0.5,
+        ease: "power2.inOut",
+        onComplete: () => lightbox.classList.add("hidden"),
+    });
 }
 
 // Add event listener for escape key
 onMounted(() => {
-  window.addEventListener("keydown", handleKeydown);
+    window.addEventListener("keydown", handleKeydown);
 });
 
 // Remove event listener when component is unmounted
 onBeforeUnmount(() => {
-  window.removeEventListener("keydown", handleKeydown);
+    window.removeEventListener("keydown", handleKeydown);
 });
 
 function handleKeydown(event) {
-  if (event.key === "Escape") {
-    closeLightBox();
-  }
+    if (event.key === "Escape") {
+        closeLightBox();
+    }
 }
 </script>
 
@@ -196,7 +200,10 @@ function handleKeydown(event) {
     </div>
   </BlockSection>
   <BlockSection id="image-2" class="bg-[#57575F] block-section" msg="Image 2 Section">
-    <img class="col-span-6" src="./assets/images/Image2.png" alt="Image 2" />
+    <div class="col-span-6 flex justify-center">
+      <!-- <img src="./assets/images/Image2.png" alt="Image 2" /> -->
+      <P5Sketch class="p5-sketch"/>
+    </div>
     <p class="col-span-6 text-3xl leading-10 px-36 text-left">
       {{ t('about') }}
     </p>
@@ -263,18 +270,18 @@ function handleKeydown(event) {
 
 <style scoped>
 .hero-section {
-  position: relative;
-  width: 100%;
-  height: 100vh; /* Full viewport height */
-  overflow: hidden; /* Ensures the image doesn't overflow the container */
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden; /* Ensures the image doesn't overflow the container */
 }
 
 .cover-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures the image covers the entire container */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the entire container */
 }
 </style>
