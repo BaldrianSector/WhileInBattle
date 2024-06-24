@@ -140,7 +140,7 @@ function closeLightBox() {
   <BlockSection id="quote" class="bg-[#AA7246]" msg="Quote Section">
     <div class="col-span-12">
       <Quote
-        quote="“… a feeling of quiet euphoria arises. A small step for our audience affinity, a big one for Hoomanism.”"
+        :quote="t('quote')"
       />
       <p class="italic absolute bottom-24 right-24 text-[#BCACAC] text-lg hover:text-cream transition duration-200 ease-in-out">
         -&nbsp<a
