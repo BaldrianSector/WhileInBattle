@@ -15,9 +15,9 @@ export default {
             let originalImage;
             let partImage;
             let pointA, pointB;
-            let showStrokes = true;
-            let showPoints = true;
-            let enableHotkeys = true;
+            let showStrokes = false;
+            let showPoints = false;
+            let enableHotkeys = false;
             let fadeStartPercent;
             let fadeEndPercent;
             let numPoints;
@@ -36,8 +36,8 @@ export default {
             p.setup = () => {
                 p.createCanvas(800, 600, p.WEBGL);
                 
-                pointA = new DraggablePoint(278, 198);
-                pointB = new DraggablePoint(280, 418);
+                pointA = new DraggablePoint(294, 248);
+                pointB = new DraggablePoint(298, 418);
                 pg = p.createGraphics(p.width, p.height, p.WEBGL);
 
                 updatePartImage();
