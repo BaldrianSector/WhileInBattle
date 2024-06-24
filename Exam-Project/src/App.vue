@@ -10,7 +10,29 @@ import NavBar from "./components/NavBar.vue";
 import Quote from "./components/Quote.vue";
 import CloseButton from "./components/CloseButton.vue";
 import { useI18n } from 'vue-i18n';
+import Lenis from 'lenis'
+import Snap from 'lenis/snap'
 
+const lenis = new Lenis({
+    wheelMultiplier: 1.5,
+})
+
+lenis.on('scroll', (e) => {
+    // console.log(e)
+})
+
+function raf(time) {
+    lenis.raf(time)
+    requestAnimationFrame(raf)
+}
+
+requestAnimationFrame(raf)
+
+const snap = new Snap(lenis, {
+    type: 'proximity',
+    velocityThreshold: '0.5', // Velocity threshold for snapping
+    lerp: 0.05,
+})
 const { t } = useI18n();
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
@@ -36,7 +58,7 @@ onMounted(() => {
         scrollTrigger: {
           trigger: char,
           start: "top 80%",
-          end: "top 45%",
+          end: "top 48%",
           scrub: 0.5,
           markers: false,
         },
@@ -67,6 +89,12 @@ onMounted(() => {
             markers: false
         });
     }); */
+
+  // Debugging: log each section to ensure all are detected
+  document.querySelectorAll('.block-section').forEach((section) => {
+    console.log('Detected section:', section);
+    snap.add(section.offsetTop);
+  });
 });
 
 function scrollToMap() {
@@ -122,7 +150,7 @@ function handleKeydown(event) {
     @scroll-to-map="scrollToMap"
     @open-light-box="openLightBox"
   />
-  <BlockSection id="hero" class="bg-[#161718] hero-section" msg="Hero Section">
+  <BlockSection id="hero" class="bg-[#161718] hero-section block-section" msg="Hero Section">
     <template v-slot:hero>
       <img
         src="./assets/images/Cover.png"
@@ -147,13 +175,13 @@ function handleKeydown(event) {
       </p>
     </div>
   </BlockSection>
-  <BlockSection id="image-1" class="bg-[#807164]" msg="Image 1 Section">
+  <BlockSection id="image-1" class="bg-[#807164] block-section" msg="Image 1 Section">
     <p class="col-span-6 text-3xl leading-10 px-40 text-left">
       {{ t('collab') }}
     </p>
     <img class="col-span-6" src="./assets/images/Image1.png" alt="Image 1" />
   </BlockSection>
-  <BlockSection id="quote" class="bg-[#AA7246]" msg="Quote Section">
+  <BlockSection id="quote" class="bg-[#AA7246] block-section" msg="Quote Section">
     <div class="col-span-12">
       <Quote
         :quote="t('quote')"
@@ -167,13 +195,13 @@ function handleKeydown(event) {
       </p>
     </div>
   </BlockSection>
-  <BlockSection id="image-2" class="bg-[#57575F]" msg="Image 2 Section">
+  <BlockSection id="image-2" class="bg-[#57575F] block-section" msg="Image 2 Section">
     <img class="col-span-6" src="./assets/images/Image2.png" alt="Image 2" />
     <p class="col-span-6 text-3xl leading-10 px-36 text-left">
       {{ t('about') }}
     </p>
   </BlockSection>
-  <BlockSection id="map" class="bg-[#4D5C93]" msg="Map Section">
+  <BlockSection id="map" class="bg-[#4D5C93] block-section" msg="Map Section">
     <div class="col-span-6 flex flex-col items-center px-40 gap-4">
       <div class="flex flex-center">
         <a href="https://www.metropolis.dk/" target="_blank">
