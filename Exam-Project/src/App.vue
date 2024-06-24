@@ -9,6 +9,9 @@ import LightBox from "./components/LightBox.vue";
 import NavBar from "./components/NavBar.vue";
 import Quote from "./components/Quote.vue";
 import CloseButton from "./components/CloseButton.vue";
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -112,22 +115,25 @@ function closeLightBox() {
       />
     </template>
 
-    <div class="filler col-span-6"></div>
+    <div class="filler col-span-6">
+      
+      <div>
+      </div>
+
+    </div>
     <div class="col-span-6 px-28 leading-[4.5rem] pt-24">
       <h1>
         WHILE IN BATTLE I’M FREE<br />
         NEVER FREE TO REST
       </h1>
       <p class="text-2xl pt-32 px-24 text-left leading-10">
-        Exploring the movement of bodies in the city space of Copenhagen during
-        the Metropolis Festival June 2024.
+        {{ t('intro') }}
       </p>
     </div>
   </BlockSection>
   <BlockSection id="image-1" class="bg-[#807164]" msg="Image 1 Section">
     <p class="col-span-6 text-3xl leading-10 px-40 text-left">
-      A meeting between 10 of swedish dance company Cullberg’s own dancers and
-      10 external dancers from the street dance community.
+      {{ t('collab') }}
     </p>
     <img class="col-span-6" src="./assets/images/Image1.png" alt="Image 1" />
   </BlockSection>
@@ -148,9 +154,7 @@ function closeLightBox() {
   <BlockSection id="image-2" class="bg-[#57575F]" msg="Image 2 Section">
     <img class="col-span-6" src="./assets/images/Image2.png" alt="Image 2" />
     <p class="col-span-6 text-3xl leading-10 px-36 text-left">
-      From the battle the Dancers rise, as individuals and together. They spring
-      from the fight, the resistance, the coexistence. From the will and
-      necessity to make a stand for something that might be taken away.
+      {{ t('about') }}
     </p>
   </BlockSection>
   <BlockSection id="map" class="bg-[#4D5C93]" msg="Map Section">
@@ -173,15 +177,13 @@ function closeLightBox() {
         </a>
       </div>
       <p class="text-2xl leading-10 text-left">
-        Tickets are free and gives you access to a seat on a bench or seat
-        cushion on the ground. Please do take your place at least 15 min. before
-        the begining of the performance.
+        {{ t('tickets') }}
       </p>
       <button
         class="transition w-full border font-semibold py-3 bg-transparent hover:bg-cream text-cream hover:text-[#161718] border-cream hover:border-transparent duration-300"
         @click="openLightBox"
       >
-        GET YOUR TICKET
+      {{ t('buy-button') }}
       </button>
     </div>
     <a

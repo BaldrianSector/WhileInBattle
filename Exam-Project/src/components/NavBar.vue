@@ -1,5 +1,24 @@
 <script setup>
+import { useI18n } from 'vue-i18n';
+import { watchEffect, computed } from 'vue';
 import { defineEmits } from 'vue';
+
+const { locale } = useI18n();
+
+const setLanguage = (newLang) => {
+    locale.value = newLang;
+    localStorage.setItem('lang', newLang);
+};
+
+watchEffect(() => {
+    const storedLang = localStorage.getItem('lang');
+    if (storedLang) {
+        locale.value = storedLang;
+    }
+});
+
+const isEnglish = computed(() => locale.value === 'en');
+const isDanish = computed(() => locale.value === 'da');
 
 const emit = defineEmits(['scroll-to-map', 'open-light-box']);
 
@@ -34,7 +53,8 @@ function openLightBox() {
         <button class="transition w-full border font-semibold py-3 bg-transparent hover:bg-cream text-cream hover:text-[#161718] border-cream hover:border-transparent duration-300 hover:mix-blend-difference" @click="openLightBox">GET YOUR TICKET</button>
       </div>
       <div class="col-span-11-12 flex-center">
-        <span class="cursor-pointer font-semibold">ENGLISH</span>&nbsp/&nbsp<span class="cursor-pointer">DANISH</span>
+        <span :class="{'cursor-pointer': true, 'font-semibold': isEnglish}" @click="setLanguage('en')">ENGLISH</span>&nbsp/&nbsp
+        <span :class="{'cursor-pointer': true, 'font-semibold': isDanish}" @click="setLanguage('da')">DANISH</span>
       </div>
     </nav>
   </div>
