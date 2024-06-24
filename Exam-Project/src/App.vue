@@ -160,7 +160,7 @@ function closeLightBox() {
   <BlockSection id="map" class="bg-[#4D5C93]" msg="Map Section">
     <div class="col-span-6 flex flex-col items-center px-40 gap-4">
       <div class="flex flex-center">
-        <a href="https://www.metropolis.dk/">
+        <a href="https://www.metropolis.dk/" target="_blank">
           <img
             src="./assets/images/Metropolis.png"
             alt="Metropolis Logo"
@@ -168,7 +168,7 @@ function closeLightBox() {
           />
         </a>
         <p class="italic px-1">&nbspX&nbsp</p>
-        <a href="https://cullberg.com/">
+        <a href="https://cullberg.com/" target="_blank">
           <img
             src="./assets/images/Cullberg.png"
             alt="Cullberg Logo"

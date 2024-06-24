@@ -35,11 +35,11 @@ function openLightBox() {
   <div class="grid-container fixed z-10 pt-20">
     <nav>
       <div class="col-span-1-2 flex-center">
-        <a href="https://www.metropolis.dk/">
+        <a href="https://www.metropolis.dk/" target="_blank">
           <img src="../assets/images/Metropolis.png" alt="Metropolis Logo" class="w-full h-full object-contain">
         </a>
         <p class="italic px-1">&nbspX&nbsp</p>
-        <a href="https://cullberg.com/">
+        <a href="https://cullberg.com/" target="_blank">
           <img src="../assets/images/Cullberg.png" alt="Cullberg Logo" class="w-full h-full object-contain">
         </a>
       </div>
