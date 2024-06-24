@@ -1,6 +1,8 @@
 <script>
+import { ref, computed } from 'vue';
 import ColGrid from './ColGrid.vue';
 import Calendar from './Calendar.vue';
+import { useI18n } from 'vue-i18n';
 
 export default {
     name: 'ParentComponent',
@@ -11,50 +13,51 @@ export default {
     props: {
         currentDate: Number,
     },
-    data() {
-        return {
-            BookingText: 'Choose a date',
-            date: 0,
-        };
-    },
-    computed: {
-        dateIsPicked() {
-            return this.date == 0;
-        }
-    },
-    methods: {
-        openLightBox() {
+    setup() {
+        const { t } = useI18n();
+        const BookingText = ref(t('No Date Selected'));
+        const date = ref(0);
+
+        const dateIsPicked = computed(() => date.value === 0);
+
+        const openLightBox = () => {
             console.log('Button clicked!');
-        },
-        datePicked(date) {
-            this.date = date;
-            switch (date) {
+        };
+
+        const datePicked = (pickedDate) => {
+            date.value = pickedDate;
+            switch (pickedDate) {
                 case 0:
-                    this.BookingText = 'Choose a date';
+                    BookingText.value = t('No Date Selected');
                     break;
                 case 25:
-                    this.BookingText = '19:30 / FEW SEATS';
-                    break;
                 case 26:
-                    this.BookingText = '19:30 / FEW SEATS';
+                case 28:
+                    BookingText.value = t('Few Seats');
                     break;
                 case 27:
-                    this.BookingText = '19:30 / RESERVE NOW';
-                    break;
-                case 28:
-                    this.BookingText = '19:30 / FEW SEATS';
-                    break;
                 case 29:
-                    this.BookingText = '19:30 / RESERVE NOW';
+                    BookingText.value = t('Reserve Now');
                     break;
                 default:
-                    this.BookingText = `Error, no date picked: ${date}`;
+                    BookingText.value = t('Error No Date', { date: pickedDate });
                     break;
             }
-        },
-        resetDate() {
-            this.datePicked(0);
-        },
+        };
+
+        const resetDate = () => {
+            datePicked(0);
+        };
+
+        return {
+            t,
+            BookingText,
+            date,
+            dateIsPicked,
+            openLightBox,
+            datePicked,
+            resetDate,
+        };
     },
 };
 </script>
@@ -74,12 +77,12 @@ export default {
             </div>
         </div>
         <div class="col-span-6 text-left text-xl px-12">
-            <p class="text-2xl">Performance lasts: 1h 30min</p>
-            <p class="text-dark-gray text-[1.2rem]">No age restrictions, everyone is welcome!</p>
-            <p class="pt-7">Choreography: Hooman Sharifi</p>
-            <p class="pt-4">Music and Sound Design: Neda Sanai</p>
-            <p class="pt-4">Dancers: Afra Hosseini Kaladjahi, Ama Kyei, Anastasija Olescuka, Andreas Sanchez, Anna Fitoussi, Anton Borgström, Camille Prieux, Chiara Gilioli, Eleanor Campbell, Gloria Kapako, Ida Holmlund, Johanna Willig-Rosenstein, Lilian Steiner, Mohamed Y. Shika, Noam Segal, Omar Velasquez Rojas, Rebecca Livaniou, Robin Johansson, Shai Faran, Vincent Van der Plas.</p>
-            <p class="pt-4">Text: BAM – Burcu Sahin, Athena Farrokhzad, Merima Dizdarević</p>
+            <p class="text-2xl">{{ t('Duration') }}</p>
+            <p class="text-dark-gray text-[1.2rem]">{{ t('Restrictions') }}</p>
+            <p class="pt-7">{{ t('Choreography') }}</p>
+            <p class="pt-4">{{ t('Music and Sound Design') }}</p>
+            <p class="pt-4">{{ t('Dancers') }}</p>
+            <p class="pt-4">{{ t('Text') }}</p>
         </div>
     </ColGrid>
 </template>

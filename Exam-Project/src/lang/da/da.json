@@ -1,10 +1,20 @@
 {
-    "intro": "Udforskning af kropsbevægelser i byrummet i København under Metropolis Festivalen juni 2024.",
+    "intro": "Undersøgelse af bevægelse af kroppe i det urbane miljø i København, under Metropolis Festivalen juni 2024.",
     "collab": "Et møde mellem 10 af det svenske dansekompagni Cullbergs egne dansere og 10 eksterne dansere fra street dance-miljøet.",
     "quote": "“… en følelse af stille eufori opstår. Et lille skridt for vores publikumstiltrækning, et stort skridt for Hoomanisme.”",
-    "about": "Fra kampen rejser Danserne sig, som individer og sammen. De springer fra kampen, modstanden, sameksistensen. Fra viljen og nødvendigheden til at tage stilling for noget, der måske kan blive taget fra dig.",
+    "about": "I støvet af kampen rejser danserne sig, både som individer og sammen. De bevæger sig fra kampen, modstanden og sameksistensen. Med viljen og nødvendigheden til det, der måske kan blive taget fra dem.",
     "tickets": "Billetterne er gratis og giver adgang til enten en plads på en bænk eller en siddepude på jorden. Tag venligst plads senest 15 min. før forestillingens begyndelse.",
     "buy-button": "BESTIL DIN BILLET",
     "en": "ENGLISH",
-    "da": "DANSK"
+    "da": "DANSK",
+    "No Date Selected": "Vælg en dato",
+    "Few Seats": "19:30 / FÅ PLADSER TILBAGE",
+    "Reserve Now": "19:30 / RESERVER NU",
+    "Error No Date": "Fejl: Vælg en dato {date}", 
+    "Duration": "Varighed: 1t 30min",
+    "Restrictions": "Ingen aldersbegrænsninger, alle er velkomne!",
+    "Choreography": "Koreograf: Hooman Sharifi",
+    "Music and Sound Design": "Musik og Lyddesign: Neda Sanai",
+    "Dancers": "Dansere: Afra Hosseini Kaladjahi, Ama Kyei, Anastasija Olescuka, Andreas Sanchez, Anna Fitoussi, Anton Borgström, Camille Prieux, Chiara Gilioli, Eleanor Campbell, Gloria Kapako, Ida Holmlund, Johanna Willig-Rosenstein, Lilian Steiner, Mohamed Y. Shika, Noam Segal, Omar Velasquez Rojas, Rebecca Livaniou, Robin Johansson, Shai Faran, Vincent Van der Plas.",
+    "Text": "Tekst: BAM – Burcu Sahin, Athena Farrokhzad, Merima Dizdarević"
 }

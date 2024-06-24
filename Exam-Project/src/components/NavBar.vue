@@ -3,6 +3,8 @@ import { useI18n } from 'vue-i18n';
 import { watchEffect, computed } from 'vue';
 import { defineEmits } from 'vue';
 
+const { t } = useI18n();
+
 const { locale } = useI18n();
 
 const setLanguage = (newLang) => {
@@ -50,7 +52,7 @@ function openLightBox() {
         </div>
       </div>
       <div class="col-span-9-10 flex-center">
-        <button class="transition w-full border font-semibold py-3 bg-transparent hover:bg-cream text-cream hover:text-[#161718] border-cream hover:border-transparent duration-300 hover:mix-blend-difference" @click="openLightBox">GET YOUR TICKET</button>
+        <button class="transition w-full border font-semibold py-3 bg-transparent hover:bg-cream text-cream hover:text-[#161718] border-cream hover:border-transparent duration-300 hover:mix-blend-difference" @click="openLightBox">{{ t('buy-button') }}</button>
       </div>
       <div class="col-span-11-12 flex-center">
         <span :class="{'cursor-pointer': true, 'font-semibold': isEnglish}" @click="setLanguage('en')">ENGLISH</span>&nbsp/&nbsp

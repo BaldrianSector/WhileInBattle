@@ -6,5 +6,15 @@
     "tickets": "Tickets are free and gives you access to a seat on a bench or seat cushion on the ground. Please do take your place at least 15 min. before the begining of the performance.",
     "buy-button": "GET YOUR TICKET",
     "en": "ENGLISH",
-    "da": "DANISH"  
+    "da": "DANISH", 
+    "No Date Selected": "Choose a date",
+    "Few Seats": "19:30 / FEW SEATS",
+    "Reserve Now": "19:30 / RESERVE NOW",
+    "Error No Date": "Error, no date picked: {date}", 
+    "Duration": "Performance lasts: 1h 30min",
+    "Restrictions": "No age restrictions, everyone is welcome!",
+    "Choreography": "Choreography: Hooman Sharifi",
+    "Music and Sound Design": "Music and Sound Design: Neda Sanai",
+    "Dancers": "Dancers: Afra Hosseini Kaladjahi, Ama Kyei, Anastasija Olescuka, Andreas Sanchez, Anna Fitoussi, Anton Borgström, Camille Prieux, Chiara Gilioli, Eleanor Campbell, Gloria Kapako, Ida Holmlund, Johanna Willig-Rosenstein, Lilian Steiner, Mohamed Y. Shika, Noam Segal, Omar Velasquez Rojas, Rebecca Livaniou, Robin Johansson, Shai Faran, Vincent Van der Plas.",
+    "Text": "Text: BAM – Burcu Sahin, Athena Farrokhzad, Merima Dizdarević"
 }
