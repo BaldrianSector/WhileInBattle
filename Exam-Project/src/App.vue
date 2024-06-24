@@ -203,7 +203,7 @@ function handleKeydown(event) {
       </button>
     </div>
     <a
-      class="col-span-6"
+      class="col-span-6 flex justify-center items-center"
       href="https://maps.app.goo.gl/fnmqkKxRPv2Bevxj8"
       target="_blank"
     >
