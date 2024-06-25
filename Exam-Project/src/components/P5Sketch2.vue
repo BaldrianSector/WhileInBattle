@@ -16,6 +16,7 @@ export default {
             let partImage;
             let pointA, pointB;
             let showStrokes = false;
+            let showQuadStripStrokes = true;
             let showPoints = false;
             let enableHotkeys = false;
             let fadeStartPercent;
@@ -27,6 +28,7 @@ export default {
             let frequencyFactor;
             let marginX;
             let reverseWave = false;
+            let interactivity = true;
             let pg;
 
             p.preload = () => {
@@ -58,22 +60,24 @@ export default {
                 frequencyFactor = 0.13;
                 marginX = 0;
 
-                // Calculate the proximity-based scaling
-                let distanceToQuad = Math.min(
-                    (Math.abs(p.mouseY - (pointA.y + pointB.y) / 2) + Math.abs(p.mouseX - (pointA.x + pointB.x) / 2) / 2) / 2,
-                );
+                if (interactivity) {
+                    // Calculate the proximity-based scaling
+                    let distanceToQuad = Math.min(
+                        (Math.abs(p.mouseY - (pointA.y + pointB.y) / 2) + Math.abs(p.mouseX - (pointA.x + pointB.x) / 2) / 2) / 2,
+                    );
 
-                // Apply dampening to the distanceToQuad
-                const dampening = 0.05; // Adjust the dampening factor as needed
-                const previousDistance = this.previousDistanceToQuad || distanceToQuad;
-                distanceToQuad = previousDistance + (distanceToQuad - previousDistance) * dampening;
-                this.previousDistanceToQuad = distanceToQuad;
+                    // Apply dampening to the distanceToQuad
+                    const dampening = 0.05; // Adjust the dampening factor as needed
+                    const previousDistance = this.previousDistanceToQuad || distanceToQuad;
+                    distanceToQuad = previousDistance + (distanceToQuad - previousDistance) * dampening;
+                    this.previousDistanceToQuad = distanceToQuad;
 
-                let scaleFactor = p.map(distanceToQuad, 0, 200, 2, 1.0, true);
-                
-                amplitude *= scaleFactor;
-                frequency *= scaleFactor * 0.5;
-                frequencyFactor *= scaleFactor * 1.2;
+                    let scaleFactor = p.map(distanceToQuad, 0, 200, 2, 1.0, true);
+
+                    amplitude *= scaleFactor;
+                    frequency *= scaleFactor * 0.5;
+                    frequencyFactor *= scaleFactor * 1.2;
+                }
                 
                 //p.background(0);
                 p.clear();
@@ -179,12 +183,6 @@ export default {
                 pg.push();
                 pg.translate(-pg.width / 2, -pg.height / 2); // Adjust coordinate system for pg
 
-                if (showStrokes) {
-                    pg.stroke(255, 255, 255, 127); // Set stroke color for the quad strip
-                } else {
-                    pg.noStroke(); // Disable strokes for the quad strip
-                }
-
                 pg.fill(150);
 
                 let x = new Array(numPoints);
@@ -226,8 +224,19 @@ export default {
 
                 // Draw the rectangle between points
                 pg.noFill();
+                if (showStrokes) {
+                    pg.stroke(255, 255, 255, 127);
+                } else {
+                    pg.noStroke();
+                }
                 pg.rect(pointA.x, pointA.y, pointB.x - pointA.x, pointB.y - pointA.y);
                 
+                if (showStrokes && showQuadStripStrokes) {
+                    pg.stroke(255, 255, 255, 127); // Set stroke color for the quad strip
+                } else {
+                    pg.noStroke(); // Disable strokes for the quad strip
+                }
+
                 pg.beginShape(p.QUAD_STRIP);
                 pg.texture(partImage);
 
@@ -277,6 +286,12 @@ export default {
                     if (p.key === 'P' || p.key === 'p') {
                         console.log(`PointA(${pointA.x}, ${pointA.y})`);
                         console.log(`PointB(${pointB.x}, ${pointB.y})`);
+                    }
+                    if (p.key === 'I' || p.key === 'i') {
+                        interactivity = !interactivity;
+                    }
+                    if (p.key === 'Q' || p.key === 'q') {
+                        showQuadStripStrokes = !showQuadStripStrokes;
                     }
                 }
             };
