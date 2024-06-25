@@ -300,8 +300,8 @@ body {
 }
 
 .map-container {
-    width: 500px;
-    height: 300px;
+    width: 580px;
+    height: 345px;
     overflow: hidden;
     position: relative;
 }
@@ -313,6 +313,6 @@ body {
 }
 
 .map-container:hover #map {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 </style>
