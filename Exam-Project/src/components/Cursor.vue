@@ -15,7 +15,7 @@ let currentScale = 0; // Track current scale value
 let currentAngle = 0; // Track current angle value
 
 // Smoothing factor for cursor movement speed (0 = smoother, 1 = instant)
-const speed = 0.14;
+const speed = 0.5;
 
 // Function to check if the cursor is over an element with cursor: pointer or a canvas element
 const isPointerElement = (element) => {
