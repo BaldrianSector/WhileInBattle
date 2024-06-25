@@ -57,6 +57,23 @@ export default {
                 timeFactor = 0.78;
                 frequencyFactor = 0.13;
                 marginX = 0;
+
+                // Calculate the proximity-based scaling
+                let distanceToQuad = Math.min(
+                    (Math.abs(p.mouseY - (pointA.y + pointB.y) / 2) + Math.abs(p.mouseX - (pointA.x + pointB.x) / 2) / 2) / 2,
+                );
+
+                // Apply dampening to the distanceToQuad
+                const dampening = 0.05; // Adjust the dampening factor as needed
+                const previousDistance = this.previousDistanceToQuad || distanceToQuad;
+                distanceToQuad = previousDistance + (distanceToQuad - previousDistance) * dampening;
+                this.previousDistanceToQuad = distanceToQuad;
+
+                let scaleFactor = p.map(distanceToQuad, 0, 200, 2, 1.0, true);
+                
+                amplitude *= scaleFactor;
+                frequency *= scaleFactor * 0.5;
+                frequencyFactor *= scaleFactor * 1.2;
                 
                 //p.background(0);
                 p.clear();
@@ -240,6 +257,9 @@ export default {
             }
 
             p.keyPressed = () => {
+                if (p.key === 'L' || p.key === 'l') {
+                        enableHotkeys = !enableHotkeys;
+                    }
                 if (enableHotkeys) {
                     if (p.key === 'H' || p.key === 'h') {
                         showStrokes = !showStrokes;
@@ -263,7 +283,9 @@ export default {
         }
     },
     beforeDestroy() {
-        this.sketch.remove();
+        if (this.sketch) {
+            this.sketch.remove();
+        }
     }
 };
 </script>

@@ -7,10 +7,18 @@ import p5 from 'p5';
 
 export default {
     name: 'P5Sketch',
+    data() {
+        return {
+            sketch: null
+        };
+    },
     mounted() {
-        this.sketch = new p5(this.sketchSetup, this.$refs.sketch);
+        this.createSketch();
     },
     methods: {
+        createSketch() {
+            this.sketch = new p5(this.sketchSetup, this.$refs.sketch);
+        },
         sketchSetup(p) {
             let originalImage;
             let partImage;
@@ -39,7 +47,6 @@ export default {
                 pointA = new DraggablePoint(395, 254);
                 pointB = new DraggablePoint(398, 500);
                 pg = p.createGraphics(p.width, p.height, p.WEBGL);
-                
             };
             
             p.draw = () => {
@@ -58,6 +65,23 @@ export default {
                 frequencyFactor = 0.13;
                 marginX = 0;
                 
+                // Calculate the proximity-based scaling
+                let distanceToQuad = Math.min(
+                    (Math.abs(p.mouseY - (pointA.y + pointB.y) / 2) + Math.abs(p.mouseX - (pointA.x + pointB.x) / 2) / 2) / 2,
+                );
+
+                // Apply dampening to the distanceToQuad
+                const dampening = 0.05; // Adjust the dampening factor as needed
+                const previousDistance = this.previousDistanceToQuad || distanceToQuad;
+                distanceToQuad = previousDistance + (distanceToQuad - previousDistance) * dampening;
+                this.previousDistanceToQuad = distanceToQuad;
+
+                let scaleFactor = p.map(distanceToQuad, 0, 200, 2, 1.0, true);
+                
+                amplitude *= scaleFactor;
+                frequency *= scaleFactor * 0.5;
+                frequencyFactor *= scaleFactor * 1.2;
+
                 //p.background(0);
                 p.clear();
                 originalImage.resize(0, p.height);
@@ -187,7 +211,6 @@ export default {
                 // Calculate the bottom y-coordinate of the draggable rectangle
                 let bottomY = pointA.y > pointB.y ? pointA.y : pointB.y;
 
-
                 let time = p.millis() / 1000.0; // Time in seconds
 
                 for (let i = 0; i < numPoints; i++) {
@@ -241,6 +264,9 @@ export default {
             }
 
             p.keyPressed = () => {
+                if (p.key === 'L' || p.key === 'l') {
+                        enableHotkeys = !enableHotkeys;
+                    }
                 if (enableHotkeys) {
                     if (p.key === 'H' || p.key === 'h') {
                         showStrokes = !showStrokes;
@@ -264,7 +290,9 @@ export default {
         }
     },
     beforeDestroy() {
-        this.sketch.remove();
+        if (this.sketch) {
+            this.sketch.remove();
+        }
     }
 };
 </script>
