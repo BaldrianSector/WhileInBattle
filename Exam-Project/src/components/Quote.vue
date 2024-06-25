@@ -9,7 +9,6 @@ const count = ref(0)
 </script>
 
 <template>
-        <br>
         <h2 class="text-4xl reveal-type px-[300px] leading-[3rem]" data-bg-color="#BCACAC" data-fg-color="#F9E7E7">{{ quote }}</h2>
 </template>
 

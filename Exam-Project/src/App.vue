@@ -96,27 +96,6 @@ onMounted(() => {
 
     // Event listener for window resize to update snapping points
     window.addEventListener('resize', updateSnappingPoints);
-
-    document.addEventListener('DOMContentLoaded', () => {
-    const mapContainer = document.querySelector('.map-container');
-    const map = document.getElementById('map');
-
-    mapContainer.addEventListener('mousemove', (e) => {
-        const rect = mapContainer.getBoundingClientRect();
-        const x = e.clientX - rect.left; // Get the horizontal coordinate
-        const y = e.clientY - rect.top;  // Get the vertical coordinate
-
-        // Calculate offset based on the container dimensions and mouse position
-        const moveX = (x / rect.width - 0.5) * 10; // Adjust 10 to control the movement range
-        const moveY = (y / rect.height - 0.5) * 10; // Adjust 10 to control the movement range
-
-        map.style.transform = `scale(1.2) translate(${moveX}px, ${moveY}px)`;
-    });
-
-    mapContainer.addEventListener('mouseleave', () => {
-        map.style.transform = 'scale(1)';
-    });
-});
 });
 
 onBeforeUnmount(() => {
@@ -261,7 +240,6 @@ function handleKeydown(event) {
       {{ t('buy-button') }}
       </button>
     </div>
-    <div class="map-container ">
     <a
         class="col-span-6 flex justify-center items-center"
         href="https://maps.app.goo.gl/fnmqkKxRPv2Bevxj8"
@@ -269,7 +247,6 @@ function handleKeydown(event) {
     >
         <img id="map" src="./assets/images/Map.png" alt="Map" />
     </a>
-    </div>
   </BlockSection>
 
   <!-- Lightbox -->
@@ -309,22 +286,5 @@ function handleKeydown(event) {
     width: 100%;
     height: 100%;
     object-fit: cover; /* Ensures the image covers the entire container */
-}
-
-.map-container {
-    width: 500px;
-    height: 300px;
-    overflow: hidden;
-    position: relative;
-}
-
-#map {
-    width: 100%;
-    height: 100%;
-    transition: transform 0.5s ease;
-}
-
-.map-container:hover #map {
-    transform: scale(1.1);
 }
 </style>

@@ -40,10 +40,10 @@ export default {
                 pointB = new DraggablePoint(298, 418);
                 pg = p.createGraphics(p.width, p.height, p.WEBGL);
 
-                updatePartImage();
             };
-
+            
             p.draw = () => {
+                updatePartImage();
                 p.translate(-p.width / 2, -p.height / 2); // Adjusting the coordinate system
 
                 const time = p.millis() / 1000.0;

@@ -17,7 +17,7 @@ export default {
             let pointA, pointB;
             let showStrokes = false;
             let showPoints = false;
-            let enableHotkeys = true;
+            let enableHotkeys = false;
             let fadeStartPercent;
             let fadeEndPercent;
             let numPoints;
@@ -32,18 +32,18 @@ export default {
             p.preload = () => {
                 originalImage = p.loadImage("/assets/images/P5/Images/img4.jpg");
             };
-
+            
             p.setup = () => {
                 p.createCanvas(800, 600, p.WEBGL);
                 
                 pointA = new DraggablePoint(395, 254);
                 pointB = new DraggablePoint(398, 500);
                 pg = p.createGraphics(p.width, p.height, p.WEBGL);
-
-                updatePartImage();
+                
             };
-
+            
             p.draw = () => {
+                updatePartImage();
                 p.translate(-p.width / 2, -p.height / 2); // Adjusting the coordinate system
 
                 const time = p.millis() / 1000.0;
