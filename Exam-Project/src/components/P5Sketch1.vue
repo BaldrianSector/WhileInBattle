@@ -25,7 +25,7 @@ export default {
             let pointA, pointB;
             let showStrokes = false;
             let showQuadStripStrokes = true;
-            let showPoints = false;
+            let showPoints = true;
             let enableHotkeys = false;
             let fadeStartPercent;
             let fadeEndPercent;
@@ -38,6 +38,7 @@ export default {
             let reverseWave = false;
             let interactivity = true;
             let pg;
+            let counter = 0;
 
             p.preload = () => {
                 originalImage = p.loadImage("/assets/images/P5/Images/img4.jpg");
@@ -52,7 +53,10 @@ export default {
             };
             
             p.draw = () => {
-                updatePartImage();
+                if (counter < 2) {
+                    updatePartImage();
+                    counter++;
+                }
                 p.translate(-p.width / 2, -p.height / 2); // Adjusting the coordinate system
 
                 const time = p.millis() / 1000.0;
