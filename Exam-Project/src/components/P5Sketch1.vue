@@ -279,6 +279,7 @@ export default {
             p.keyPressed = () => {
                 if (p.key === 'L' || p.key === 'l') {
                         enableHotkeys = !enableHotkeys;
+                        console.log(`Hotkeys are for Sketch1 are now %c${enableHotkeys ? 'enabled' : 'disabled'}`, `color: ${enableHotkeys ? 'green' : 'red'}`);
                     }
                 if (enableHotkeys) {
                     if (p.key === 'H' || p.key === 'h') {
