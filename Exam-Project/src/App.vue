@@ -14,6 +14,7 @@ import Lenis from 'lenis';
 import Snap from 'lenis/snap';
 import P5Sketch1 from './components/P5Sketch1.vue';
 import P5Sketch2 from './components/P5Sketch2.vue';
+import Cursor from "./components/Cursor.vue"; 
 
 const lenis = new Lenis({
     wheelMultiplier: 1.5,
@@ -150,6 +151,7 @@ function handleKeydown(event) {
 </script>
 
 <template>
+  <Cursor/>
   <NavBar
     id="navbar"
     @scroll-to-map="scrollToMap"
@@ -289,7 +291,11 @@ function handleKeydown(event) {
 }
 
 ::selection {
-    background-color: var(--color-cream);
+    background-color: var(--color-primary);
     color: #161718;
+}
+
+body {
+    cursor: none;
 }
 </style>
