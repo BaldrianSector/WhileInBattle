@@ -241,11 +241,11 @@ function handleKeydown(event) {
       </button>
     </div>
     <a
-        class="col-span-6 flex justify-center items-center"
+        class="col-span-6 flex justify-center items-center w-3/4"
         href="https://maps.app.goo.gl/fnmqkKxRPv2Bevxj8"
         target="_blank"
     >
-        <img id="map" src="./assets/images/Map.png" alt="Map" />
+        <img id="map" src="./assets/images/Map.png" alt="Map"/>
     </a>
   </BlockSection>
 
