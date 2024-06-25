@@ -271,7 +271,7 @@ function handleKeydown(event) {
   </div>
 </template>
 
-<style scoped>
+<style>
 .hero-section {
     position: relative;
     width: 100%;
@@ -286,5 +286,10 @@ function handleKeydown(event) {
     width: 100%;
     height: 100%;
     object-fit: cover; /* Ensures the image covers the entire container */
+}
+
+::selection {
+    background-color: var(--color-cream);
+    color: #161718;
 }
 </style>
