@@ -243,11 +243,11 @@ function handleKeydown(event) {
       </button>
     </div>
     <a
-        class="col-span-6 flex justify-center items-center w-3/4"
+        class="map-container col-span-6 flex justify-center items-center rounded-2xl"
         href="https://maps.app.goo.gl/fnmqkKxRPv2Bevxj8"
         target="_blank"
     >
-        <img id="map" src="./assets/images/Map.png" alt="Map"/>
+        <img id="map" src="./assets/images/Map.png" alt="Map" />
     </a>
   </BlockSection>
 
@@ -297,5 +297,22 @@ function handleKeydown(event) {
 
 body {
     cursor: none;
+}
+
+.map-container {
+    width: 500px;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease;
+}
+
+.map-container:hover #map {
+    transform: scale(1.05);
 }
 </style>
