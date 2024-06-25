@@ -145,7 +145,8 @@ onBeforeUnmount(() => {
 
 function handleKeydown(event) {
     if (event.key === "Escape") {
-        closeLightBox();
+      closeLightBox();
+      document.activeElement.blur(); // Clear focus on buttons
     }
 }
 </script>
