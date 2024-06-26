@@ -41,14 +41,14 @@ export default {
             let counter = 0;
 
             p.preload = () => {
-                originalImage = p.loadImage("/assets/images/P5/Images/img4.jpg");
+                originalImage = p.loadImage("/assets/images/P5/Images/img4_AI.jpg");
             };
             
             p.setup = () => {
                 p.createCanvas(800, 600, p.WEBGL);
                 
-                pointA = new DraggablePoint(395, 254);
-                pointB = new DraggablePoint(398, 500);
+                pointA = new DraggablePoint(396, 201);
+                pointB = new DraggablePoint(397, 500);
                 pg = p.createGraphics(p.width, p.height, p.WEBGL);
             };
             
