@@ -16,7 +16,7 @@ import P5Sketch1 from './components/P5Sketch1.vue';
 import P5Sketch2 from './components/P5Sketch2.vue';
 import Cursor from "./components/Cursor.vue"; 
 
-const lenis = new Lenis({
+/* const lenis = new Lenis({
     wheelMultiplier: 1.5,
 });
 
@@ -29,13 +29,13 @@ function raf(time) {
     requestAnimationFrame(raf);
 }
 
-requestAnimationFrame(raf);
+requestAnimationFrame(raf); */
 
-const snap = new Snap(lenis, {
+/* const snap = new Snap(lenis, {
     type: 'proximity',
     velocityThreshold: '0.5', // Velocity threshold for snapping
     lerp: 0.035,
-});
+}); */
 const { t } = useI18n();
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
@@ -110,7 +110,8 @@ function scrollToMap() {
     });
 
     // Scroll to the map section using Lenis
-    lenis.scrollTo("#map");
+    // lenis.scrollTo("#map");
+    gsap.to(window, { duration: 1, scrollTo: "#map", ease: "power3"});
 }
 
 function openLightBox() {
@@ -210,7 +211,7 @@ function handleKeydown(event) {
       <!-- <img src="./assets/images/Image2.png" alt="Image 2" /> -->
       <P5Sketch2 class="p5-sketch"/>
     </div>
-    <p class="col-span-6 text-3xl leading-10 px-36 text-left">
+    <p class="col-span-6 text-3xl leading-10 px-32 text-left">
       {{ t('about') }}
     </p>
   </BlockSection>
