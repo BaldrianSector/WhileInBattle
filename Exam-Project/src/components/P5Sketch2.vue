@@ -33,7 +33,7 @@ export default {
             let counter = 0;
 
             p.preload = () => {
-                originalImage = p.loadImage("/assets/images/P5/Images/img7_AI4.jpg");
+                originalImage = p.loadImage("/assets/images/P5/Images/img7_AI5.jpg");
             };
 
             p.setup = () => {
