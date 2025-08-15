@@ -1,9 +1,9 @@
 <template>
-    <div class="circle"></div>
+  <div class="circle"></div>
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted } from "vue";
 
 // Create objects to track mouse position and custom cursor position
 const mouse = { x: 0, y: 0 }; // Track current mouse position
@@ -19,99 +19,108 @@ const speed = 0.5;
 
 // Function to check if the cursor is over an element with cursor: pointer or a canvas element
 const isPointerElement = (element) => {
-    const style = window.getComputedStyle(element);
-    return style.cursor === 'pointer' || element.tagName.toLowerCase() === 'canvas';
-}
+  const style = window.getComputedStyle(element);
+  return (
+    style.cursor === "pointer" || element.tagName.toLowerCase() === "canvas"
+  );
+};
 
 // Function to start the animation loop
 const tick = (circleElement) => {
-    // MOVE
-    // Calculate circle movement based on mouse position and smoothing
-    circle.x += (mouse.x - circle.x) * speed;
-    circle.y += (mouse.y - circle.y) * speed;
-    // Create a transformation string for cursor translation
-    const translateTransform = `translate(${circle.x}px, ${circle.y}px)`;
+  // MOVE
+  // Calculate circle movement based on mouse position and smoothing
+  circle.x += (mouse.x - circle.x) * speed;
+  circle.y += (mouse.y - circle.y) * speed;
+  // Create a transformation string for cursor translation
+  const translateTransform = `translate(${circle.x}px, ${circle.y}px)`;
 
-    // SQUEEZE
-    // 1. Calculate the change in mouse position (deltaMouse)
-    const deltaMouseX = mouse.x - previousMouse.x;
-    const deltaMouseY = mouse.y - previousMouse.y;
-    // Update previous mouse position for the next frame
-    previousMouse.x = mouse.x;
-    previousMouse.y = mouse.y;
-    // 2. Calculate mouse velocity using Pythagorean theorem and adjust speed
-    const mouseVelocity = Math.min(Math.sqrt(deltaMouseX ** 2 + deltaMouseY ** 2) * 4, 150);
-    // 3. Convert mouse velocity to a value in the range [0, 0.5]
-    const scaleValue = (mouseVelocity / 150) * 0.5;
-    // 4. Smoothly update the current scale
-    currentScale += (scaleValue - currentScale) * speed;
-    // 5. Create a transformation string for scaling
-    const scaleTransform = `scale(${1 + currentScale}, ${1 - currentScale})`;
+  // SQUEEZE
+  // 1. Calculate the change in mouse position (deltaMouse)
+  const deltaMouseX = mouse.x - previousMouse.x;
+  const deltaMouseY = mouse.y - previousMouse.y;
+  // Update previous mouse position for the next frame
+  previousMouse.x = mouse.x;
+  previousMouse.y = mouse.y;
+  // 2. Calculate mouse velocity using Pythagorean theorem and adjust speed
+  const mouseVelocity = Math.min(
+    Math.sqrt(deltaMouseX ** 2 + deltaMouseY ** 2) * 4,
+    150
+  );
+  // 3. Convert mouse velocity to a value in the range [0, 0.5]
+  const scaleValue = (mouseVelocity / 150) * 0.5;
+  // 4. Smoothly update the current scale
+  currentScale += (scaleValue - currentScale) * speed;
+  // 5. Create a transformation string for scaling
+  const scaleTransform = `scale(${1 + currentScale}, ${1 - currentScale})`;
 
-    // ROTATE
-    // 1. Calculate the angle using the atan2 function
-    const angle = Math.atan2(deltaMouseY, deltaMouseX) * 180 / Math.PI;
-    // 2. Check for a threshold to reduce shakiness at low mouse velocity
-    if (mouseVelocity > 5) {
-        currentAngle = angle;
-    }
-    // 3. Create a transformation string for rotation
-    const rotateTransform = `rotate(${currentAngle}deg)`;
+  // ROTATE
+  // 1. Calculate the angle using the atan2 function
+  const angle = (Math.atan2(deltaMouseY, deltaMouseX) * 180) / Math.PI;
+  // 2. Check for a threshold to reduce shakiness at low mouse velocity
+  if (mouseVelocity > 5) {
+    currentAngle = angle;
+  }
+  // 3. Create a transformation string for rotation
+  const rotateTransform = `rotate(${currentAngle}deg)`;
 
-    // Apply all transformations to the circle element in a specific order: translate -> rotate -> scale
-    circleElement.style.transform = `${translateTransform} ${rotateTransform} ${scaleTransform}`;
+  // Apply all transformations to the circle element in a specific order: translate -> rotate -> scale
+  circleElement.style.transform = `${translateTransform} ${rotateTransform} ${scaleTransform}`;
 
-    // Request the next frame to continue the animation
-    window.requestAnimationFrame(() => tick(circleElement));
-}
+  // Request the next frame to continue the animation
+  window.requestAnimationFrame(() => tick(circleElement));
+};
 
 onMounted(() => {
-    // Select the circle element after the component is mounted
-    const circleElement = document.querySelector('.circle');
+  // Select the circle element after the component is mounted
+  const circleElement = document.querySelector(".circle");
 
-    // Update mouse position on the 'mousemove' event
-    window.addEventListener('mousemove', (e) => {
-        mouse.x = e.x;
-        mouse.y = e.y;
+  // Update mouse position on the 'mousemove' event
+  window.addEventListener("mousemove", (e) => {
+    mouse.x = e.x;
+    mouse.y = e.y;
 
-        // Check if the cursor is over an element with cursor: pointer or a canvas element
-        const elementUnderCursor = document.elementFromPoint(mouse.x, mouse.y);
-        if (elementUnderCursor && isPointerElement(elementUnderCursor)) {
-            circleElement.classList.add('filled');
-        } else {
-            circleElement.classList.remove('filled');
-        }
-    });
+    // Check if the cursor is over an element with cursor: pointer or a canvas element
+    const elementUnderCursor = document.elementFromPoint(mouse.x, mouse.y);
+    if (elementUnderCursor && isPointerElement(elementUnderCursor)) {
+      circleElement.classList.add("filled");
+    } else {
+      circleElement.classList.remove("filled");
+    }
+  });
 
-    // Start the animation loop
-    tick(circleElement);
+  // Start the animation loop
+  tick(circleElement);
 });
-
 </script>
 
 <style scoped>
-
 .circle {
-    --circle-size: 28px;
-    position: fixed;
-    height: var(--circle-size);
-    width: var(--circle-size);
-    border: 2px solid var(--color-primary);
-    border-radius: 100%;
-    top: calc(var(--circle-size) / 2 * -1);
-    left: calc(var(--circle-size) / 2 * -1);
-    pointer-events: none;
-    z-index: 9999;
-    transition: background-color 0.2s;
-    transition: width 0.2s;
-    transition: height 0.2s;
+  --circle-size: 28px;
+  position: fixed;
+  height: var(--circle-size);
+  width: var(--circle-size);
+  border: 2px solid var(--color-primary);
+  border-radius: 100%;
+  top: calc(var(--circle-size) / 2 * -1);
+  left: calc(var(--circle-size) / 2 * -1);
+  pointer-events: none;
+  z-index: 9999;
+  transition: background-color 0.2s;
+  transition: width 0.2s;
+  transition: height 0.2s;
 }
 
 .circle.filled {
-    background-color: var(--color-primary);
-    --circle-size: 18px;
-    transition: width 0.5s;
-    transition: height 0.5s;
+  background-color: var(--color-primary);
+  --circle-size: 18px;
+  transition: width 0.5s;
+  transition: height 0.5s;
 }
 
+/* Hide custom cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .circle {
+    display: none;
+  }
+}
 </style>

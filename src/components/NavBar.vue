@@ -33,7 +33,7 @@ function openLightBox() {
 </script>
 
 <template>
-  <div class="grid-container fixed z-10 pt-20">
+  <div class="grid-container fixed z-10 pt-20 overflow-hidden">
     <nav>
       <div class="col-span-1-2 flex-center">
         <a href="https://www.metropolis.dk/" target="_blank">
