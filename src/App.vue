@@ -285,7 +285,7 @@ function handleKeydown(event) {
       </div>
     </div>
   </div>
-  <div class="mobile-only flex flex-col place-content-center h-screen">
+  <div class="mobile-only flex flex-col place-content-center h-dvh">
     <p class="text-3xl leading-2 px-10 text-center">
       {{ t("mobile-message-title") }}
     </p>
@@ -296,7 +296,7 @@ function handleKeydown(event) {
     <img
       src="./assets/images/Noise.png"
       alt="noise"
-      class="absolute inset-0 w-full h-screen object-cover mix-blend-color-burn z-50 pointer-events-none select-none"
+      class="absolute inset-0 w-full h-dvh object-cover mix-blend-color-burn z-50 pointer-events-none select-none"
     />
   </div>
 </template>
